@@ -1,32 +1,43 @@
-const buttonContainer = document.querySelector('#button-container');
-const coinInfoContainer = document.querySelector('#coin-info-container');
-const coinArray = [
+const playerBankContaienr = document.querySelector('#player-bank');
+const buttonContainer = document.querySelector('#coin-btn-info');
+const coinInfoContainer = document.querySelector('#coin-info');
+const miningZoneContainer = document.querySelector('#mining-zone');
+const clickerButton = document.querySelector('#clicker-button');
+
+const coinData = [
     {
-        coinApi: 'btc-bitcoin',
-        coinID: 'btc-info-button',
-        buttonName: 'BTC',
+        api: 'btc-bitcoin',
+        id: 'btc-info-button',
+        name: 'BTC',
     }, {
-        coinApi: 'doge-dogecoin',
-        coinID: 'doge-info-button',
-        buttonName: 'DOGE',
+        api: 'doge-dogecoin',
+        id: 'doge-info-button',
+        name: 'DOGE',
     }, {
-        coinApi: 'ltc-litecoin',
-        coinID: 'ltc-info-button',
-        buttonName: 'LTC',
+        api: 'ltc-litecoin',
+        id: 'ltc-info-button',
+        name: 'LTC',
     }
 ];
+let playerBank = new Map([
+    ['money', 0],
+    ['Bitcoin', 0],
+    ['Dogecoin', 0],
+    ['Litecoin', 0],
+]);
 
-const loadCoinInfo = async (coinApi) => {
+
+const loadCoinInfo = async (api) => {
     let resolve =
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinApi}`);
+        await fetch(`https://api.coinpaprika.com/v1/tickers/${api}`);
     let json =
         await resolve.json();
     return json;
 }
 
-const renderCoinInfo = async (coinApi) => {
+const renderCoinInfo = async (api) => {
     let { 
-        name: coinName, 
+        name: name, 
         quotes: {
             USD: {
                 price: coinPrice,
@@ -34,33 +45,64 @@ const renderCoinInfo = async (coinApi) => {
                 percent_change_7d: coinChange7d, 
             }
         }
-    } = await loadCoinInfo(coinApi);
+    } = await loadCoinInfo(api);
     coinInfoContainer.innerHTML = `
-        <h1>${coinName}</h1>
+        <h1>${name}</h1>
         <h2>${coinPrice} $</h2>
         <h2>Price change in 15 minutes: ${coinChange15m}%</h2>
         <h2>Price change in 7 days: ${coinChange7d}%</h2>
     `;
+    clickerButton.value = name;
+    clickerButton.textContent = `Mining ${name}`;
 }
 
 const renderCoinButton = () => {
     let htmlButton = [];
-    coinArray.forEach(e => {
+    coinData.forEach(e => {
         htmlButton.push(`
             <input type="radio" name="coin-info" 
-            id="radio-${e.buttonName}" value=''>
-            <label for="radio-${e.buttonName}"
-            id="${e.coinID}">${e.buttonName}</label>
+            id="radio-${e.name}" value=''>
+            <label for="radio-${e.name}"
+            id="${e.id}">${e.name}</label>
         `);
     });
     buttonContainer.innerHTML = htmlButton.join('');
-    coinArray.forEach(e => {
-        document.getElementById(e.coinID)
+    coinData.forEach(e => {
+        document.getElementById(e.id)
         .addEventListener(
             'click',
-            () => {renderCoinInfo(e.coinApi)}
+            () => {renderCoinInfo(e.api)}
         );
     });
 }
 
-renderCoinButton();
+const renderPlayerBank = () => {
+    playerBankContaienr.innerHTML = `
+        <p>
+            BTC: ${playerBank.get('Bitcoin')}. 
+            DOGE: ${playerBank.get('Dogecoin')}. 
+            LTC: ${playerBank.get('Litecoin')}. 
+            ${playerBank.get('money')}$
+        </p>
+    `;
+}
+
+const clickMining = (coin) => {
+    if (!(playerBank.has(`${coin}`))) {
+        playerBank.set(`${coin}`, 1);
+    } else {
+        let n = playerBank.get(`${coin}`);
+        n += 1;
+        playerBank.set(`${coin}`, n);
+    }
+    renderPlayerBank();
+}
+
+clickerButton.addEventListener('click', () => {
+    clickMining(clickerButton.value);
+})
+
+window.onload = () => {
+    renderCoinButton();
+    renderPlayerBank();
+}
