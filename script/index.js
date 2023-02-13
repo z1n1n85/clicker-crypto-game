@@ -47,9 +47,10 @@ const renderCoinButton = () => {
     let htmlButton = [];
     coinArray.forEach(e => {
         htmlButton.push(`
-            <li>
-                <button id='${e.coinID}'>${e.buttonName}</button>
-            </li>
+            <input type="radio" name="coin-info" 
+            id="radio-${e.buttonName}" value=''>
+            <label for="radio-${e.buttonName}"
+            id="${e.coinID}">${e.buttonName}</label>
         `);
     });
     buttonContainer.innerHTML = htmlButton.join('');

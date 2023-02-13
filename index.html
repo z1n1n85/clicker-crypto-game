@@ -9,19 +9,17 @@
 </head>
 <body>
     <div class="container">
-        <ul class="coin-list" id="button-container">
-            <li class="coin-item">
-                <button class="coin-button" id="btc-get-info">BTC</button>
-            </li>
-            <li class="coin-item">        
-                <button class="coin-button" id="doge-get-info">DOGE</button>
-            </li>
-            <li class="coin-item">
-                <button class="coin-button" id="ltc-get-info">LTC</button>
-            </li>
-        </ul>
+        <div class="coin-list" id="button-container">
+            <input type="radio" name="coin-info" id="radio-BTC" value="BTC">
+            <label for="radio-BTC">BTC</label>
+            <input type="radio" name="coin-info" id="radio-BTC" value="DOGE">
+            <label for="radio-DOGE">DOGE</label>
+            <input type="radio" name="coin-info" id="radio-BTC" value="LTC">
+            <label for="radio-LTC">LTC</label>
+        </div>
         <div class="coin-info">
             <div class="coin-info__container" id="coin-info-container">
+                <h1>SELECT COIN</h1>
             </div>
         </div>
     </div>
