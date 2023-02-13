@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
-    <div class="container">
-        <div class="coin-list" id="button-container">
+    <body>
+        <div id="player-bank">
+            <p>BTC: 0. DOGE: 0. LTC: 0. 0$</p>
+        </div>
+        <div id="coin-btn-info">
             <input type="radio" name="coin-info" id="radio-BTC" value="BTC">
             <label for="radio-BTC">BTC</label>
             <input type="radio" name="coin-info" id="radio-BTC" value="DOGE">
@@ -17,10 +20,11 @@
             <input type="radio" name="coin-info" id="radio-BTC" value="LTC">
             <label for="radio-LTC">LTC</label>
         </div>
-        <div class="coin-info">
-            <div class="coin-info__container" id="coin-info-container">
-                <h1>SELECT COIN</h1>
-            </div>
+        <div id="coin-info">
+            <h1>SELECT COIN</h1>
+        </div>
+        <div id="mining-zone">
+            <button id="clicker-button" value="">Mining Coin</button>
         </div>
     </div>
     <script src="script/index.js"></script>
