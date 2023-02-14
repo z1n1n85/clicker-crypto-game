@@ -1,5 +1,5 @@
-const playerBankContaienr = document.querySelector('#player-bank');
-const buttonContainer = document.querySelector('#coin-btn-info');
+const playerBankValue = document.querySelector('#player-bank-value');
+const buttonInfoContainer = document.querySelector('#coin-btn-info');
 const coinInfoContainer = document.querySelector('#coin-info');
 const miningZoneContainer = document.querySelector('#mining-zone');
 const clickerButton = document.querySelector('#clicker-button');
@@ -47,11 +47,14 @@ const renderCoinInfo = async (api) => {
         }
     } = await loadCoinInfo(api);
     coinInfoContainer.innerHTML = `
-        <h1>${name}</h1>
-        <h2>${coinPrice} $</h2>
-        <h2>Price change in 15 minutes: ${coinChange15m}%</h2>
-        <h2>Price change in 7 days: ${coinChange7d}%</h2>
+        <h4 class="card-title">${name}</h4>
+        <p class="card-text">${coinPrice} $
+        </br>
+        Price change in 15 minutes: ${coinChange15m}%
+        </br>
+        Price change in 7 days: ${coinChange7d}%</p>
     `;
+    clickerButton.removeAttribute('disabled');
     clickerButton.value = name;
     clickerButton.textContent = `Mining ${name}`;
 }
@@ -60,13 +63,13 @@ const renderCoinButton = () => {
     let htmlButton = [];
     coinData.forEach(e => {
         htmlButton.push(`
-            <input type="radio" name="coin-info" 
+            <input type="radio" class="btn-check" name="coin-info" 
             id="radio-${e.name}" value=''>
-            <label for="radio-${e.name}"
+            <label for="radio-${e.name}" class="btn btn btn-outline-secondary"
             id="${e.id}">${e.name}</label>
         `);
     });
-    buttonContainer.innerHTML = htmlButton.join('');
+    buttonInfoContainer.innerHTML = htmlButton.join('');
     coinData.forEach(e => {
         document.getElementById(e.id)
         .addEventListener(
@@ -77,13 +80,11 @@ const renderCoinButton = () => {
 }
 
 const renderPlayerBank = () => {
-    playerBankContaienr.innerHTML = `
-        <p>
-            BTC: ${playerBank.get('Bitcoin')}. 
-            DOGE: ${playerBank.get('Dogecoin')}. 
-            LTC: ${playerBank.get('Litecoin')}. 
-            ${playerBank.get('money')}$
-        </p>
+    playerBankValue.textContent = `
+        BTC: ${playerBank.get('Bitcoin')}. 
+        DOGE: ${playerBank.get('Dogecoin')}. 
+        LTC: ${playerBank.get('Litecoin')}. 
+        ${playerBank.get('money')}$
     `;
 }
 
