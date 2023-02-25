@@ -1,0 +1,19 @@
+.visible{
+    visibility: visible;
+}
+.hidden{
+    visibility: hidden;
+}
+
+#coin-search-container{
+    position: relative;
+}
+
+#autocomplite-list{
+    overflow-y: auto;
+    height: 80px;
+    width: 100%;
+    z-index: 99;
+    position: absolute;
+    background-color: whitesmoke;
+}

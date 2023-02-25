@@ -10,36 +10,45 @@
 </head>
 <body>
     <body>
-        <section class="vh-100 gradient-custom bg-secondary bg-gradient">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="p-5 col-10 col-md-6 col-lg-6 col-xl-6 bg-light bg-gradient">
-                        <h1 class="text-center mb-4">CRYPTONATOR 4000</h1>
-                        <div>
-                            <h4>Your bank:</h4>
-                            <p id="player-bank-value">BTC: 0. DOGE: 0. LTC: 0. 0$</p>
+        <section class="vh-100 vw-100 bg-secondary bg-gradient d-flex justify-content-center align-items-center">
+            <div class="container py-5 row d-flex justify-content-center align-items-center">
+                <div class="p-5 col-10 col-md-8 col-lg-6 col-xl-6 bg-light bg-gradient">
+                    <h1 class="text-center mb-4">CRYPTONATOR 4000</h1>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h4>YOUR BANK:</h4>
+                            <p id="player-bank-value" class="mb-0">BTC: 0. DOGE: 0. LTC: 0. 0$</p>
                         </div>
-                        <div id="coin-btn-info" class="text-center mb-3">
-                            <input type="radio" class="btn-check" name="coin-info" id="radio-BTC" value="BTC">
-                            <label for="radio-BTC" class="btn btn-secondary">BTC</label>
-                            <input type="radio" class="btn-check" name="coin-info" id="radio-BTC" value="DOGE">
-                            <label for="radio-DOGE" class="btn btn-secondary">DOGE</label>
-                            <input type="radio" class="btn-check" name="coin-info" id="radio-BTC" value="LTC">
-                            <label for="radio-LTC" class="btn btn-secondary">LTC</label>
+                    </div>
+                    <div id="search-coin" class="input-group mb-3">
+                        <div class="col-8" id="coin-search-container" >
+                            <input type="text" id="coin-search" class="form-control" placeholder="Coin Name" aria-label="Coin Name" aria-describedby="basic-addon1">
+                            <ul id="autocomplite-list" class="hidden">
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
                         </div>
-                        <div class="card mb-3">
-                            <div class="card-body" id="coin-info">
-                                <h4 class="card-title">SELECT COIN</h4>
-                                <p class="card-text">...</br>...</br>...</p>
+                        <button class="btn btn-outline-secondary col-4" type="button" id="button-addon1">Search!</button>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body" id="coin-info">
+                            <h4 class="card-title">COIN NOT SELECTED</h4>
+                            <div class="d-flex justify-content-center my-5">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </div>
                         </div>
-                        <div id="mining-zone" class="text-center">
-                            <button id="clicker-button" value="" class="btn btn-success btn-lg" disabled>Mining Coin</button>
-                        </div>
+                    </div>
+                    <div id="mining-zone" class="text-center">
+                        <button id="clicker-button" value="" class="btn btn-success btn-lg" disabled>Mining Coin</button>
                     </div>
                 </div>
             </div>
         </section>
-    <script src="script/index.js"></script>
+    <script type="module" src="script/index.js"></script>
 </body>
 </html>
