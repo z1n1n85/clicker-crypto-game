@@ -1,39 +1,30 @@
-const playerBankValue = document.querySelector('#player-bank-value');
-const buttonInfoContainer = document.querySelector('#coin-btn-info');
-const coinInfoContainer = document.querySelector('#coin-info');
-const miningZoneContainer = document.querySelector('#mining-zone');
-const clickerButton = document.querySelector('#clicker-button');
+import constant from './constant.js';
+const {
+    playerBankValue,
+    buttonInfoContainer,
+    coinInfoContainer,
+    miningZoneContainer,
+    clickerButton,
+    url,
+    inputSearchCoin,
+} = constant;
 
-const coinData = [
-    {
-        api: 'btc-bitcoin',
-        id: 'btc-info-button',
-        name: 'BTC',
-    }, {
-        api: 'doge-dogecoin',
-        id: 'doge-info-button',
-        name: 'DOGE',
-    }, {
-        api: 'ltc-litecoin',
-        id: 'ltc-info-button',
-        name: 'LTC',
-    }
-];
-let playerBank = new Map([
-    ['money', 0],
-    ['Bitcoin', 0],
-    ['Dogecoin', 0],
-    ['Litecoin', 0],
-]);
+import saves from './saves.js';
+const {
+    playerBank,
+} = saves;
 
+import {
+    loadCoinsList,
+    coinsIdByName, 
+    coinsNameList
+} from './coinsInfo.js';
 
-const loadCoinInfo = async (api) => {
-    let resolve =
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${api}`);
-    let json =
-        await resolve.json();
-    return json;
-}
+import {
+    autocomplite
+} from './autocomplite.js';
+
+// ===============================================================
 
 const renderCoinInfo = async (api) => {
     let { 
@@ -81,10 +72,10 @@ const renderCoinButton = () => {
 
 const renderPlayerBank = () => {
     playerBankValue.textContent = `
-        BTC: ${playerBank.get('Bitcoin')}. 
-        DOGE: ${playerBank.get('Dogecoin')}. 
-        LTC: ${playerBank.get('Litecoin')}. 
-        ${playerBank.get('money')}$
+        BTC: ${playerBank['Bitcoin']}. 
+        DOGE: ${playerBank['Dogecoin']}. 
+        LTC: ${playerBank['Litecoin']}. 
+        ${playerBank['money']}$
     `;
 }
 
@@ -99,11 +90,20 @@ const clickMining = (coin) => {
     renderPlayerBank();
 }
 
+// ===============================================================
+
 clickerButton.addEventListener('click', () => {
     clickMining(clickerButton.value);
-})
+});
+
+inputSearchCoin.addEventListener('focus', () => {
+    autocomplite(inputSearchCoin, coinsNameList)
+});
+
+// ===============================================================
 
 window.onload = () => {
-    renderCoinButton();
+    loadCoinsList();
+    console.log(coinsNameList);
     renderPlayerBank();
 }
