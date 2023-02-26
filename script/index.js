@@ -20,9 +20,7 @@ import {
     coinsNameList
 } from './coinsInfo.js';
 
-import {
-    autocomplite
-} from './autocomplite.js';
+import { autocomplite } from './autocomplite.js';
 
 // ===============================================================
 
@@ -92,18 +90,17 @@ const clickMining = (coin) => {
 
 // ===============================================================
 
+window.onload = () => {
+    loadCoinsList();
+    renderPlayerBank();
+}
+
 clickerButton.addEventListener('click', () => {
     clickMining(clickerButton.value);
 });
 
-inputSearchCoin.addEventListener('focus', () => {
-    autocomplite(inputSearchCoin, coinsNameList)
+inputSearchCoin.addEventListener('input', () => {
+    autocomplite(inputSearchCoin, coinsNameList);
+    console.log('aaa')
 });
 
-// ===============================================================
-
-window.onload = () => {
-    loadCoinsList();
-    console.log(coinsNameList);
-    renderPlayerBank();
-}

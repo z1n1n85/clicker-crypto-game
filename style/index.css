@@ -1,7 +1,4 @@
-.visible{
-    visibility: visible;
-}
-.hidden{
+.close{
     visibility: hidden;
 }
 
@@ -9,11 +6,11 @@
     position: relative;
 }
 
-#autocomplite-list{
+.autocomplite-list{
     overflow-y: auto;
-    height: 80px;
+    max-height: 20vh;
     width: 100%;
     z-index: 99;
     position: absolute;
-    background-color: whitesmoke;
+    list-style-type: none;
 }
