@@ -20,12 +20,13 @@ export const renderCoinInfo = async (value) => {
         }
     } = await loadCoinInfo(coinID);
     coinInfoContainer.innerHTML = `
-        <h4 class="card-title">${name}</h4>
-        <p class="card-text">${coinPrice} $
-        </br>
-        Price change in 15 minutes: ${coinChange15m}%
-        </br>
-        Price change in 7 days: ${coinChange7d}%</p>
+        <h4 class="left-align">${name}</h4>
+        <hr class="tui-divider"></hr> 
+        <ul class="left-align">
+        <li> ${coinPrice} $ </li>
+        <li> Price change in 15 minutes: ${coinChange15m}% </li>
+        <li> Price change in 7 days: ${coinChange7d}% </li>
+        </ul>
     `;
     // clickerButton.removeAttribute('disabled');
     // clickerButton.value = name;

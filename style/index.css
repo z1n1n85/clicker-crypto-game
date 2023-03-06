@@ -1,8 +1,10 @@
+
+/* REQUIRED */
 .close{
     visibility: hidden;
 }
 
-#coin-search-container{
+#coin-search-input-container{
     position: relative;
 }
 
@@ -14,4 +16,38 @@
     z-index: 99;
     position: absolute;
     list-style-type: none;
+}
+
+/* FRAMEWORK DEPENDENT */
+::selection{
+    color: white;
+    background-color: black;
+}
+
+body{
+    height: 100vh;
+}
+
+#main-container{
+    padding-top: 100px;
+}
+
+#app-window{
+    max-width: 400px;
+}
+
+fieldset + fieldset{
+    margin-top: 10px;
+}
+
+#coin-search-container{
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#coin-info{
+    margin-top: 20px;
 }

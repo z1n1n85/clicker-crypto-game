@@ -4,45 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRYPTONATOR 4000</title>
+    <title>CRYPTONATOR v5.83.2</title>
+    <link rel="stylesheet" href="style/reset.css">
     <link rel="stylesheet" href="tuicss/tuicss.min.css">
     <link rel="stylesheet" href="style/index.css">
 </head>
 <body>
-    <body>
-        <section class="">
-            <div class="">
-                <h1 class="">CRYPTONATOR 4000</h1>
-                <div class="">
-                    <div class="">
-                        <h4>YOUR BANK:</h4>
-                        <p id="player-bank-value" class="">BTC: 0. DOGE: 0. LTC: 0. 0$</p>
-                    </div>
-                </div>
-                <div id="search-coin" class="">
+    <section id="main-container" class="center full-width full-height tui-screen-1024-768 bordered blue-168">
+        <div id="app-window" class="tui-window white-168 blue-168-text">
+            <fieldset class="tui-fieldset tui-border-double">
+                <legend class="white-255-text">CRYPTONATOR v5.83.2</legend>
+                <fieldset class="tui-fieldset tui-border-solid">
+                    <legend class="left-align">YOUR BANK:</legend>
+                    <p id="player-bank-value" class="">0$</p>
+                </fieldset>
+                <fieldset class="tui-fieldset tui-border-solid">
+                    <legend class="left-align">COIN INFORM</legend>
                     <div class="" id="coin-search-container" >
-                        <input type="text" id="input-search-coin" class="" placeholder="Coin Name" aria-label="Coin Name">
-                        <ul id="" class="autocomplite-list close">
-                            <li class="">Загрузка данных...</li>
-                        </ul>
-                    </div>
-                    <button class="" type="button" id="btn-search-coin">Search!</button>
-                </div>
-                <div class="">
-                    <div class="" id="coin-info">
-                        <h4 class="">COIN NOT SELECTED</h4>
-                        <div class="">
-                            <div class="" role="status">
-                                <span class="">Loading...</span>
-                            </div>
+                        <div id="coin-search-input-container">
+                            <input type="text" id="input-search-coin" class="tui-input" placeholder="Coin Name" aria-label="Coin Name">
+                            <ul id="" class="autocomplite-list close tui-border-dashed green-168 black-255-text"></ul>
                         </div>
+                        <button class="tui-button" type="button" id="btn-search-coin">Search!</button>
                     </div>
-                </div>
-                <div id="mining-zone" class="">
-                    <button id="clicker-button" value="" class="" disabled>Mining Coin</button>
-                </div>
-            </div>
-        </section>
+                    <div id="coin-info">
+                        <p class="">Coin not selected</p>
+                    </div>
+                </fieldset>
+                <fieldset id="mining-zone" class="tui-fieldset tui-border-solid">
+                    <legend class="left-align">MINIG ZONE</legend>
+                    <button id="clicker-button" value="" class="tui-button disabled left" disabled>Mining Coin</button>
+                </fieldset>
+            </fieldset>
+        </div>
+    </section>
     <script type="module" src="script/index.js"></script>
+    <script src="tuicss/tuicss.min.js"></script>
 </body>
 </html>
