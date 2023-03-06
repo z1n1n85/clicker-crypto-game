@@ -19,9 +19,9 @@ export const loadCoinsList = async () => {
     }
 }
 
-const loadCoinInfo = async (api) => {
+export const loadCoinInfo = async (coinID) => {
     let resolve =
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${api}`);
+        await fetch(`${url}tickers/${coinID}`);
     let json =
         await resolve.json();
     return json;

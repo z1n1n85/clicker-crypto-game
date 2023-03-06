@@ -8,6 +8,7 @@
 
 .autocomplite-list{
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 20vh;
     width: 100%;
     z-index: 99;

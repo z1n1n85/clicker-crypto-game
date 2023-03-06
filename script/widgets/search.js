@@ -1,8 +1,3 @@
-import constant from './constant.js';
-const { inputSearchCoin, } = constant;
-
-// ===============================================================
-
 export const autocomplite = (input, array) => {
     let list = input.nextElementSibling;
     const search = (input, array) => {
@@ -25,18 +20,17 @@ export const autocomplite = (input, array) => {
                 }
             });
             if (searchResultHTML.length != 0){
-                list.innerHTML = '<li class="list-group-item">Загрузка результатов...</li>';
+                list.innerHTML = '<li class="list-group-item">Loading result...</li>';
                 setTimeout(() => {
                     list.innerHTML = searchResultHTML.join('');
                 }, 0);
             } else {
-                list.innerHTML = '<li class="list-group-item">Ничего не найдено :(</li>';
+                list.innerHTML = '<li class="list-group-item">Result not found :(</li>';
             }
         } else {
             list.classList.add('close');
         }
     }
-    // ===============================================================
     input.addEventListener('input', () => {
         search(input, array);
     });
